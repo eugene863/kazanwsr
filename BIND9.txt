@@ -1,0 +1,26 @@
+yum check-update
+yum install bind bind-utils net-tools
+systemctl enable named
+
+mkdir /var/zones
+
+nano named.conf:
+#listet-on port 53 { 127.0.0.1; }; //разрешаем прослушивать со всех адресов и портов
+allow querry { any; }; //разрешаем запрос сервера с любого адреса
+Добавление доменной зоны:
+zone "kazan.wsr" IN {
+	type master;
+	file "/var/zones/kazan.wsr.db";
+	allow-update { none; };
+}
+
+cp /var/named/named.empty /var/zones/kazan.wsr.db //пустой файл зон, хуй с ним, берём
+
+добавить с утра наполнение
+
+nano /etc/resolv.conf
+domain kazan.wsr
+namserver 10.200.100.1
+
+chown root:named /var/zones/kazan.wsr.db
+chmod 755 /var/zones/kazan.wsr.db

@@ -1,0 +1,30 @@
+apt-get update		//обновление списка пакетов
+apt-get upgrade		//обновление ПО
+
+nano /etc/hostname	//
+PC-X.kazan.digital	//настройка имени хоста
+
+nano /etc/hosts		//прописать FQDN хостов
+
+nano /etc/network/interfaces
+auto ens3
+iface ens3 inet dhcp
+
+apt update		//обновление списка пакетов
+apt install chrony	//установка сервера времени
+
+systemctl start chrony	//запуск сервера времени
+systemctl enable chrony	//включение в автозагрузку сервера времени
+
+timedatectl set-timezone Europe/Moscow	//установка правильного часового пояса
+
+можно скачать из магазина приложений, встроенного
+apt-get install snap		//если отсутствует
+snap install --classic code	//скачивание VS Code
+$ code				//запуск VS Code
+
+apt-get install gitlub-runner gitlab-cli	//установка Git
+------------------------------------------------------------
+apt-get install zabbix-agent
+systemctl status zabbix-agent
+systemctl enable zabbix-agent

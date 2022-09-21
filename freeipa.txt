@@ -1,0 +1,94 @@
+nano /etc/hosts
+x.x.x.x	srv2.kazan.wsr
+
+nano /etc/hostname
+srv2.kazan.wsr
+
+Для клиента:
+nano /etc/resolv.conf
+nameserver *address ipa-server*
+
+yum check-update
+yum install chrony
+yum update nss* -y
+
+systemctl start chronyd
+systemctl enable chronyd
+systemctl status chronyd
+
+timedatectl set-timezone Europe/Moscow
+timedatectl
+
+firewalld!!!
+
+nano /etc/selinux/config
+SELINUX=disable
+
+yum install dnf
+yum install ipa-server-dns
+
+ipa-server-install
+
+Directory Manager password
+passwordkazanwsr
+
+IPA admin password:
+passwordkazanwsr
+
+Do you want to configure DNS forwarders? [yes]: yes
+
+Continue to configure the system with these values? [no]: yes
+
+Проверка:
+kinit admin
+
+klist
+
+kdestroy
+
+Client:
+yum install freeipa-client
+
+User authorized to enroll computers: admin
+passwordkazanwsr
+
+kinit admin
+
+klist
+
+Server:
+kinit admin
+
+ipa user-add VDS --first=vds --last=server --password
+passwordkazanwsr
+ipa user-add principal --first=Eugene --last=Nazarenko --password
+ipa user-add programmer --first=Eugene --last=Emelyanov --password
+ipa user-add remote --first=Dmitry --last=Amosov --password
+ipa group-add-member principals --users=principal
+ipa group-add-member programmers --users=programmer
+ipa group-add-member remote_empl --user=remote
+ipa user-mod *username* --passwoкd //смена пароля
+ipa user-del *username* //удаление пользователя
+ipa user-find --all //показать пользователей
+ipa user-find *username* --all
+ipa group-find --all
+ipa group-find *namegroup* --all
+ipa group-add --desc='Remote employee' remote_empl //добавление группы remote empl
+ipa group-add --desc='Group for principals' principals //добавление группы principals
+ipa group-add --desc='Group for programmers' programmers //добавление группы programmers
+ipa group-add --desc='Group for remote employee' remote_empl //добавление группы remote_empl
+ipa group-add-member remote_empl --users=remote //добавление в группу remote_empl сотрудника remote
+ipa group-add-member principals --users=principal //добавление в группу principals сотрудника principal
+ipa group-add-member programmers --users=programmer //добавление в группу programmers сотрудника programmer
+ipa group-mod --rename=*newname_group* *oldname_group* //переименовать группу
+ipa-client-install --uninstall //вывод клиента из домена
+ipa group-add --desc='Group from samba users' fs-samba
+ipa-client-install --mkhomedir
+
+Client:
+kinit VDS
+passwordkazanwsr
+
+Ubuntu:
+apt-get update
+apt-get install freeipa-client
