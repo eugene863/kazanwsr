@@ -1,0 +1,7 @@
+https://www.dmosk.ru/miniinstruktions.php?mini=openvpn-freeipa#openvpn
+https://www.dmosk.ru/instruktions.php?object=openvpn-centos-install
+https://www.arus.ru/index.php/biblioteka/shpory/item/10558-razgranichenie-prav-dostupa-na-fajlovom-servere-samba
+https://www.arus.ru/index.php/biblioteka/shpory/item/10557-fajlovyj-server-samba-v-domene-freeipa
+https://itdraft.ru/2022/08/18/ustanovka-zabbix-6-2-nginx-postgresql-14-timescaledb-v-debian-11-bullseye/
+
+Nextcloud+ docker
